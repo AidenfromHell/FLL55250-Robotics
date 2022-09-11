@@ -1,0 +1,33 @@
+def right_turn(degrees,speed,reset):
+    mm_motor.set_default_speed(speed)
+    if(reset == 1):
+        hub.motion_sensor.reset_yaw_angle()
+    while(hub.motion_sensor.get_yaw_angle()<degrees):
+        mm_motor.start(100)
+    mm_motor.stop()
+
+def reset_turn():
+    mm_motor.set_default_speed(normal_speed)
+# hub.motion_sensor.reset_yaw_angle()
+    while(hub.motion_sensor.get_yaw_angle()>0):
+        mm_motor.start(-100)
+    mm_motor.stop()
+
+def right_turn_motor(degrees,speed):
+    mm_motor.set_default_speed(speed)
+    mm_motor.move_tank(degrees,'degrees',speed,0)
+    mm_motor.stop()
+
+def left_turn(degrees,speed,reset):
+    mm_motor.set_default_speed(speed)
+    if(reset == 1):
+        hub.motion_sensor.reset_yaw_angle()
+    while((-hub.motion_sensor.get_yaw_angle())<degrees):
+        print(hub.motion_sensor.get_yaw_angle())
+        mm_motor.start(-100)
+    mm_motor.stop()
+
+def left_turn_motor(degrees,speed):
+    mm_motor.set_default_speed(speed)
+    mm_motor.move_tank(degrees,'degrees',0,speed)
+    mm_motor.stop()
